@@ -2,6 +2,10 @@
 
 罗伯特·M·波西格《禅与摩托车维修艺术》（Zen and the Art of Motorcycle Maintenance, 1974）的单页拆解：三条叙事线、十七天旅程路线（可点击站点）、人物、核心概念（良质 / 浪漫 vs 古典 / 修车即修心）、菲德鲁斯的追问之路、金句、四部三十二章结构与书外之事。
 
+## 在线预览
+
+- GitHub Pages：<https://qiangsi.github.io/zen-moto-breakdown/>
+
 ## 使用
 
 单文件静态页面，零依赖、无需构建：直接打开 `index.html`，或托管到任意静态服务（GitHub Pages / Vercel / Netlify 等）。
