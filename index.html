@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>《禅与摩托车维修艺术》拆解</title>
+<style>
+  :root {
+    --background: #ffffff;
+    --foreground: #1a1d21;
+    --card: #ffffff;
+    --muted: #f2f3f5;
+    --muted-foreground: #5c6470;
+    --border: #e4e7ec;
+    --primary: #18181b;
+    --primary-foreground: #ffffff;
+    --viz-series-1: #3b82f6;
+    --viz-series-2: #f59e0b;
+    --viz-series-3: #a855f7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #111214;
+      --foreground: #e8eaed;
+      --card: #1a1c1f;
+      --muted: #23262a;
+      --muted-foreground: #9aa1ab;
+      --border: #2e3238;
+      --primary: #e8eaed;
+      --primary-foreground: #111214;
+      --viz-series-1: #60a5fa;
+      --viz-series-2: #fbbf24;
+      --viz-series-3: #c084fc;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 980px;
+    padding: 24px 16px 40px;
+  }
+  h1 { font-size: 18px; font-weight: 500; margin: 0 0 6px; }
+  h2 { font-size: 16px; font-weight: 500; margin: 26px 0 10px; }
+  h3 { font-size: 14px; font-weight: 500; margin: 18px 0 8px; }
+  p { margin: 8px 0; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  i[data-lucide] { display: none; }
+  .text-small { font-size: 12px; }
+  .text-muted { color: var(--muted-foreground); }
+  .text-nowrap { white-space: nowrap; }
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .viz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 10px 0;
+  }
+  .viz-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 10px 0;
+  }
+  .viz-stat-value {
+    font-size: 22px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    margin: 2px 0;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--foreground);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 5px 14px;
+  }
+  .btn[aria-pressed="true"] {
+    background: var(--primary);
+    border-color: transparent;
+    color: var(--primary-foreground);
+  }
+  .table { width: 100%; border-collapse: collapse; }
+  .table th, .table td {
+    border-bottom: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .table thead th { color: var(--muted-foreground); font-weight: 500; }
+  .table-responsive { overflow-x: auto; }
+</style>
+</head>
+<body>
+<div id="zamm-breakdown">
+  <h1>《禅与摩托车维修艺术》拆解</h1>
+  <p class="text-muted">罗伯特·M·波西格 · 1974 年 · 副题 An Inquiry into Values（一场关于「价值」的探究）</p>
+  <p>一半是 17 天横跨美国的摩托车之旅，一半是一场追问「什么是好」的哲学长谈——暗处还藏着一个被电击抹去的旧灵魂。</p>
+
+  <div class="viz-grid" style="margin-top:14px">
+    <div class="card viz-stat">
+      <div class="text-small text-muted">出版</div>
+      <div class="viz-stat-value">1974</div>
+      <div class="text-small text-muted">首季卖出 5 万册</div>
+    </div>
+    <div class="card viz-stat">
+      <div class="text-small text-muted">拒稿</div>
+      <div class="viz-stat-value">121 次</div>
+      <div class="text-small text-muted">之后成为现象级畅销书</div>
+    </div>
+    <div class="card viz-stat">
+      <div class="text-small text-muted">销量</div>
+      <div class="viz-stat-value">500 万+</div>
+      <div class="text-small text-muted">史上最畅销的哲学书</div>
+    </div>
+    <div class="card viz-stat">
+      <div class="text-small text-muted">篇幅</div>
+      <div class="viz-stat-value">4 部 32 章</div>
+      <div class="text-small text-muted">讲一个 17 天的旅程</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2><i data-lucide="git-branch" aria-hidden="true"></i> 三条线，一本书</h2>
+  <div class="viz-grid">
+    <div>
+      <h3><span class="lane-dot" style="--lane-c: var(--viz-series-1)"></span>故事线 · 十七天旅程</h3>
+      <p>「我」带着 11 岁的儿子克里斯骑摩托车横穿美国，前九天有朋友约翰、思薇雅同行。第一人称，一路向西。</p>
+    </div>
+    <div>
+      <h3><span class="lane-dot" style="--lane-c: var(--viz-series-2)"></span>哲思线 · 「肖陶扩」</h3>
+      <p>作者借 19 世纪美国巡回演讲「肖陶扩」之名，一路插叙讲义：认识论、科学哲学、古希腊——相当于把一场哲学课拆开绑在公路上。</p>
+    </div>
+    <div>
+      <h3><span class="lane-dot" style="--lane-c: var(--viz-series-3)"></span>幽灵线 · 菲德鲁斯</h3>
+      <p>叙述者的过去人格，被电击治疗「抹除」过。他藏在似曾相识的地形里，一点点渗出，最终与「我」正面相遇。</p>
+    </div>
+  </div>
+  <p class="text-small text-muted">三条线在最后一章汇成一条——这正是本书结构的妙处。</p>
+
+  <hr>
+
+  <h2><i data-lucide="map" aria-hidden="true"></i> 十七天路线</h2>
+  <p class="text-small text-muted">原型旅程：1968 年 7 月 8 日从明尼阿波利斯出发，17 天后抵达加州海岸。点击站点，看这一段发生了什么。</p>
+  <div id="zamm-route-bar" class="viz-row" role="group" aria-label="旅程站点">
+    <button type="button" class="btn" aria-pressed="true" data-stop="0">1 · 明尼阿波利斯</button>
+    <button type="button" class="btn" aria-pressed="false" data-stop="1">2 · 大平原</button>
+    <button type="button" class="btn" aria-pressed="false" data-stop="2">3 · 迈尔斯城</button>
+    <button type="button" class="btn" aria-pressed="false" data-stop="3">4 · 博兹曼</button>
+    <button type="button" class="btn" aria-pressed="false" data-stop="4">5 · 落基山</button>
+    <button type="button" class="btn" aria-pressed="false" data-stop="5">6 · 黄石·爱达荷</button>
+    <button type="button" class="btn" aria-pressed="false" data-stop="6">7 · 通往旧金山</button>
+    <button type="button" class="btn" aria-pressed="false" data-stop="7">8 · 终点</button>
+  </div>
+  <div class="card" id="zamm-route-detail" aria-live="polite" style="margin-top:10px">
+    <h3 id="zamm-route-title">明尼阿波利斯 · 出发</h3>
+    <p id="zamm-route-text">第 1 天（原型旅程：1968 年 7 月 8 日）。「我」载着 11 岁的儿子克里斯，与约翰、思薇雅同行——这组同伴将一起走完前九天。第一场「肖陶扩」从一个问题开始：为什么有人会怕科技？</p>
+  </div>
+
+  <hr>
+
+  <h2><i data-lucide="users" aria-hidden="true"></i> 书里的人</h2>
+  <div class="viz-grid">
+    <div>
+      <h3>叙述者「我」</h3>
+      <p>电击之后出现的新人格：温和、克制，骑一辆老款本田 Super Hawk，自己动手保养——古典派本尊。</p>
+    </div>
+    <div>
+      <h3>克里斯（11 岁）</h3>
+      <p>敏感、易怒，一路在恐惧什么。他与父亲之间，隔着一扇看不见的「玻璃门」。</p>
+    </div>
+    <div>
+      <h3>约翰 &amp; 思薇雅</h3>
+      <p>浪漫派朋友。约翰那辆新买的宝马 R60 出了毛病宁可不闻不问——不是懒，是拒绝被拉进机器的「另一个世界」。</p>
+    </div>
+    <div>
+      <h3>菲德鲁斯（幽灵）</h3>
+      <p>名字取自柏拉图对话《斐德罗篇》。执念于「什么是好」，一路追问到疯狂。</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2><i data-lucide="lightbulb" aria-hidden="true"></i> 核心思想：一切围着「良质」转</h2>
+
+  <h3>良质（Quality）——全书的太阳</h3>
+  <ul>
+    <li><strong>无法定义：</strong>菲德鲁斯拒绝定义良质——任何定义都得先假设主客二分，而良质正在二分之前。</li>
+    <li><strong>先于主客：</strong>良质不是「我认出的好」，也不是「物自带的优」，它是主体与客体相遇的那个瞬间。</li>
+    <li><strong>近似于「道」：</strong>波西格明说，良质与道相近——不可言说，却在每一次「这真漂亮、真顺手」里被人当场认出。</li>
+    <li><strong>缝合两种文化：</strong>浪漫看得见表象，古典看得见结构；良质先于两者，所以能把它们重新接起来。</li>
+  </ul>
+
+  <h3>一体两面：浪漫理解 vs 古典理解</h3>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr><th></th><th>浪漫理解</th><th>古典理解</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>看见什么</strong></td><td>表象与感受：这辆车好不好看、给不给劲</td><td>结构与原理：点火 → 供油 → 传动</td></tr>
+        <tr><td><strong>面对故障</strong></td><td>宁可绕开：交给修理工，「别把我拉进那个世界」</td><td>动手诊断：做笔记，一步步逼近原因</td></tr>
+        <tr><td><strong>得到什么</strong></td><td>骑行本身：风、路、此刻</td><td>机器的秩序，内心的平静</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>波西格不是要分谁对谁错——他要说的是：这个分裂本身，才是现代人觉得科技「冷」、生活「空」的病根。</p>
+
+  <h3>修车即修心：进取心与陷阱</h3>
+  <p>良质落到手上，靠的是进取心（gumption）——那股让你愿意开工、并持续干下去的心气。波西格专门给偷走它的东西起了名字：<strong>陷阱</strong>。</p>
+  <div class="viz-grid">
+    <div>
+      <p><strong>外部 · 挫折（setbacks）</strong></p>
+      <ul>
+        <li>受伤、零件状况、缺一块关键知识</li>
+        <li>治法：慢下来、做笔记、提前排障</li>
+      </ul>
+    </div>
+    <div>
+      <p><strong>内部 · 心结（hang-ups）</strong></p>
+      <ul>
+        <li>价值陷阱：价值观僵化、自我膨胀、焦虑、厌倦、急躁</li>
+        <li>真理陷阱：是/否二元失灵——有些问题的答案是「无」（mu）：问题本身问错了</li>
+        <li>肌肉陷阱：光线、温度、姿势、手感——身体不适也会偷走心气</li>
+      </ul>
+    </div>
+  </div>
+  <p><strong>「卡住」不是敌人。</strong>修不下去的时刻，恰恰是旧认知框架松动的时刻——答案正要进来。别硬拧：静下来，答案常在你不再较劲时出现。</p>
+  <p><strong>猴子陷阱。</strong>猎人把果子放进拴着的葫芦，猴子抓着果子不肯松手，于是被捉。菲德鲁斯用它讲「价值僵化」：困住你的往往不是问题，而是你死攥着不肯放的那个判断。</p>
+
+  <hr>
+
+  <h2><i data-lucide="route" aria-hidden="true"></i> 菲德鲁斯的追问之路</h2>
+  <ol class="zamm-steps">
+    <li><strong>科学少年</strong>——少年天才，一度迷信科学万能；直到发现科学只回答「是什么」，答不了「什么是好」，信仰崩塌，退学出走。</li>
+    <li><strong>写作与修辞</strong>——做记者、写技术文档，最终在蒙大拿州立大学教修辞与写作。</li>
+    <li><strong>追问「好」本身</strong>——从「怎么教学生写好文章」出发，一路追问到「好」本身；他拒绝给良质下定义，课堂哗然。</li>
+    <li><strong>主客之前</strong>——顿悟：良质先于主体与客体。不是「我判断它好」，而是良质发生，才分出「我」与「世界」。</li>
+    <li><strong>芝加哥对决</strong>——进入芝加哥大学跨学科项目，重读古希腊：良质近于智者学派所教的 aretê（卓越），而这正是被柏拉图、亚里士多德的「真理」路线打败并抹除的东西。</li>
+    <li><strong>疯狂与电击</strong>——思想被判定为疾病。电击治疗之后，菲德鲁斯从人格里消失，醒来的是温和的「我」。书页之下，这是一次对理性的审判，也是一次自我收复。</li>
+  </ol>
+
+  <hr>
+
+  <h2><i data-lucide="quote" aria-hidden="true"></i> 书里被引用最多的话</h2>
+  <blockquote>
+    <p>不用把左手挪开车把，我看一眼表：上午九点半。</p>
+    <footer class="text-small text-muted">开篇第一句</footer>
+  </blockquote>
+  <blockquote>
+    <p>佛——或者说神——存在于计算机的电路里、摩托车的变速齿轮里，一如存在于山顶或花瓣之中。以为不然，便是贬低佛，也便是贬低自己。</p>
+    <footer class="text-small text-muted">关于科技里的神圣</footer>
+  </blockquote>
+  <blockquote>
+    <p>你真正在修理的那台机器，其实叫作你自己。</p>
+    <footer class="text-small text-muted">关于修理</footer>
+  </blockquote>
+  <blockquote>
+    <p>我们从四周无边的觉知原野里，抓起一把沙子，把它叫作世界。</p>
+    <footer class="text-small text-muted">关于觉知</footer>
+  </blockquote>
+
+  <hr>
+
+  <h2><i data-lucide="book-open" aria-hidden="true"></i> 全书结构：4 部 32 章</h2>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr><th>部分</th><th>章节</th><th>故事线</th><th>哲思线（肖陶扩）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>第一部</td><td class="text-nowrap tabular-nums">1–9</td><td>出发、穿越大平原抵达博兹曼；「鬼」初现</td><td>古典 vs 浪漫；科技恐惧从何而来</td></tr>
+        <tr><td>第二部</td><td class="text-nowrap tabular-nums">10–15</td><td>登山折返，继续西行</td><td>理性为何装不下「好」：方法论危机</td></tr>
+        <tr><td>第三部</td><td class="text-nowrap tabular-nums">16–26</td><td>分别后的山地与峡谷</td><td>良质登场：先于主客、不可定义；修理的实践论</td></tr>
+        <tr><td>第四部</td><td class="text-nowrap tabular-nums">27–32</td><td>通往旧金山，父子和解</td><td>古希腊之战；疯狂与电击的真相</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="text-small text-muted">两种读法都行：有人跳过哲学插叙只读故事，有人只读肖陶扩。第一遍「读不进去」是这本书设计的一部分——它本来就像一场边骑边聊的长谈。</p>
+
+  <hr>
+
+  <h2><i data-lucide="archive" aria-hidden="true"></i> 书外的事</h2>
+  <div class="viz-grid">
+    <div>
+      <h3>写在鞋店楼上</h3>
+      <p>波西格在明尼阿波利斯一家鞋店楼上的公寓里写作：白天在霍尼韦尔写电脑手册，凌晨 2–6 点写书，坚持四年，被 121 家出版社拒稿。</p>
+    </div>
+    <div>
+      <h3>一夜成名</h3>
+      <p>1974 年由 William Morrow 以 3000 美元预付款出版，首三个月卖出 5 万册；此后被称为史上最畅销的哲学书，累计销量超 500 万册。</p>
+    </div>
+    <div>
+      <h3>那辆本田还在</h3>
+      <p>原型旅程骑的 1966 年本田 CB77 Super Hawk，连同手稿与打字机一起入藏史密森尼美国历史国家博物馆，2024 年 4 月首次公开展出。</p>
+    </div>
+    <div>
+      <h3>书外的结局</h3>
+      <p>现实中的克里斯 1979 年 11 月在旧金山禅修中心附近遇害，年仅 22 岁；波西格在续作《莱拉》（1991）里继续这场追问。2017 年 4 月，波西格去世，享年 88 岁。</p>
+    </div>
+  </div>
+
+  <p class="text-small text-muted" style="margin-top:10px">参考：Wikipedia（英文/中文条目）、LitCharts 情节摘要、Smithsonian Magazine（2024）、《纽约时报》1979 年档案报道。</p>
+</div>
+
+<style>
+  #zamm-breakdown blockquote {
+    margin: 0 0 12px;
+    padding: 2px 0 2px 14px;
+    border-left: 3px solid var(--border);
+  }
+  #zamm-breakdown blockquote p {
+    margin: 0;
+  }
+  #zamm-breakdown blockquote footer {
+    margin-top: 4px;
+  }
+  #zamm-breakdown ol.zamm-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  #zamm-breakdown ol.zamm-steps li {
+    position: relative;
+    padding: 0 0 14px 24px;
+  }
+  #zamm-breakdown ol.zamm-steps li::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    bottom: 2px;
+    width: 1px;
+    background: var(--border);
+  }
+  #zamm-breakdown ol.zamm-steps li:last-child::before {
+    display: none;
+  }
+  #zamm-breakdown ol.zamm-steps li::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 6px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0.85;
+  }
+  #zamm-breakdown .lane-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--lane-c, var(--primary));
+    margin-right: 8px;
+    vertical-align: 1px;
+  }
+</style>
+
+<script>
+  (function () {
+    var stops = [
+      { name: "明尼阿波利斯 · 出发", text: "第 1 天（原型旅程：1968 年 7 月 8 日）。「我」载着 11 岁的儿子克里斯，与约翰、思薇雅同行——这组同伴将一起走完前九天。第一场「肖陶扩」从一个问题开始：为什么有人会怕科技？" },
+      { name: "大平原 · 达科他方向", text: "公路笔直，风景渐空。叙述者开始对陌生地形生出「似曾相识」——菲德鲁斯的碎片记忆第一次从平原上渗出来。" },
+      { name: "迈尔斯城（蒙大拿）", text: "古典式修车的教科书现场：爬坡后发动机发闷 → 火花塞发黑 → 推断高海拔让混合气过浓 → 换量孔、调气门。一条理性链条，一步步逼近原因。" },
+      { name: "博兹曼（蒙大拿）", text: "借宿老友德威斯夫妇家。菲德鲁斯当年就在这里的蒙大拿州立大学教写作。旧地重游，「鬼」越来越近。" },
+      { name: "落基山徒步", text: "父子俩上山。克里斯一路抱怨；夜里，「玻璃门」噩梦第一次出现。叙述者莫名不安，没到山顶就下了山。" },
+      { name: "黄石 · 爱达荷山地", text: "同行九天后，在蒙大拿与约翰、思薇雅分别。修车哲学正式开讲：进取心（gumption）、陷阱，以及「卡住」的价值。" },
+      { name: "通往旧金山", text: "克里斯越走越不对劲。叙述者做了决定：送走儿子，把自己重新送回医院——并把这个秘密亲口告诉克里斯。" },
+      { name: "终点 · 并肩骑行", text: "克里斯问出那句话：「在医院时，你为什么不打开那扇玻璃门？」——菲德鲁斯不是疯子。父子和解，朝着旧金山方向骑行。" }
+    ];
+    var bar = document.getElementById("zamm-route-bar");
+    var titleEl = document.getElementById("zamm-route-title");
+    var textEl = document.getElementById("zamm-route-text");
+    var buttons = Array.prototype.slice.call(bar.querySelectorAll("button[data-stop]"));
+    function select(i) {
+      var s = stops[i];
+      if (!s) return;
+      buttons.forEach(function (b) {
+        var on = Number(b.getAttribute("data-stop")) === i;
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      titleEl.textContent = s.name;
+      textEl.textContent = s.text;
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var i = Number(b.getAttribute("data-stop"));
+        select(i);
+        if (window.zcode && typeof window.zcode.setWidgetState === "function") {
+          window.zcode.setWidgetState({ privateContent: { routeStop: i } }).catch(function () {});
+        }
+      });
+    });
+    var init = 0;
+    try {
+      var st = window.zcode && window.zcode.widgetState;
+      var v = st && st.privateContent && st.privateContent.routeStop;
+      if (typeof v === "number" && v >= 0 && v < stops.length) init = v;
+    } catch (e) {}
+    select(init);
+    window.addEventListener("zcode:set_globals", function (ev) {
+      var g = ev && ev.detail && ev.detail.globals;
+      var v = g && g.widgetState && g.widgetState.privateContent && g.widgetState.privateContent.routeStop;
+      if (typeof v === "number" && v >= 0 && v < stops.length) select(v);
+    });
+  })();
+</script>
+</body>
+</html>
